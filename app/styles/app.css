@@ -1,0 +1,12 @@
+.generate-button {
+    background-color: #4CAF50;
+    border-radius: 50%;
+    border: none;
+    color: white;
+    padding: 100px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 60px;
+    margin: 4px 2px;
+}
