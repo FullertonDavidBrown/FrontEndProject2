@@ -20,15 +20,23 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+    firebase: {
+      apiKey: "AIzaSyBiHskzl8giKlEWzw4s_8S7MUwNQXqXaVg",
+      authDomain: "project-creator-6ec53.firebaseapp.com",
+      databaseURL: "https://project-creator-6ec53.firebaseio.com",
+      projectId: "project-creator-6ec53",
+      storageBucket: "project-creator-6ec53.appspot.com",
+      messagingSenderId: "577819686044"
     }
   };
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
-    // ENV.APP.LOG_ACTIVE_GENERATION = true;
-    // ENV.APP.LOG_TRANSITIONS = true;
-    // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
-    // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.APP.LOG_ACTIVE_GENERATION = true;
+    ENV.APP.LOG_TRANSITIONS = true;
+    ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
+    ENV.APP.LOG_VIEW_LOOKUPS = true;
   }
 
   if (environment === 'test') {
