@@ -7,7 +7,7 @@ export default DS.Model.extend({
   with: DS.attr('string'),
   by: DS.attr('string'),
   reason: DS.attr('string'),
-  popularity: DS.attr('number')
+  popularity: DS.attr('number'),
   completeName: computed('share', 'of', 'with', 'by', 'reason', function() {
     return `${this.get('share')} ${this.get('of')} ${this.get('with')} ${this.get('by')} ${this.get('reason')}`;
   })
