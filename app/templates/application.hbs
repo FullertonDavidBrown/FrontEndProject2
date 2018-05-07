@@ -1,3 +1,5 @@
 <button class="btn btn-primary btn-lg btn-block"  disabled={{isDisabled}} {{action 'buttonAction'}}>Button</button>
-
-{{outlet}}
+<div class="container">
+  {{partial 'navbar'}}
+  {{outlet}}
+</div>
