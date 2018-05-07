@@ -8,8 +8,11 @@ var projects = {
   of: ['food', 'family', 'pets', 'celebrities', 'books', 'music', 'movies',
     'other people', 'yourself', 'travel', 'jokes', 'businesses', 'aliens'
   ],
-  with: ['food', 'family', 'pets', 'celebrities', 'books', 'music', 'movies',
-    'other people', 'yourself', 'travel', 'jokes', 'businesses', 'aliens'
+  with: ['classmates', 'professors', 'friends', 'strangers', 'potential mates',
+    'communities of interest', 'editors', 'the public', 'pet owners',
+    'myself', 'your significant other', 'parents', 'family', 'politicians',
+    'government', 'co-workers', 'frenemies', 'stores', 'your mechanic',
+    'your doctor', 'your lawyer', 'your banker',
   ],
   by: ['commenting', 'voting', 'upvoting or downvoting', 'liking', 'buying',
     'editing', 'bargaining', 'contacting', 'viewing', 'rating',
@@ -34,7 +37,7 @@ export default Controller.extend({
 
       var of = projects.of[Math.floor(Math.random() * projects.of.length)];
       console.log('Of:');
-      console.log(of);
+      console.log( of );
 
       var With = projects.with[Math.floor(Math.random() * projects.with.length)];
       console.log('With:');
