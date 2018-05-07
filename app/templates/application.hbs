@@ -1,9 +1,5 @@
-
-<head>
-  <title>Project Generator</title>
-  <link rel="stylesheet" href="/styles/app.css">
-</head>
-
-{{#stylish-button type="shikoba" border="thick" upperCase=true size="l" }}Generate{{/stylish-button}}
-
-{{outlet}}
+<button class="btn btn-primary btn-lg btn-block"  disabled={{isDisabled}} {{action 'buttonAction'}}>Button</button>
+<div class="container">
+  {{partial 'navbar'}}
+  {{outlet}}
+</div>
