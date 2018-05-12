@@ -39,7 +39,7 @@ export default Controller.extend({
           includeSuggestions: true,
           hasDictionaryDef: true,
           includePartOfSpeech: 'verb'
-      }, function(error, word, headers, statusCode {
+      }, function(error, word, headers, statusCode) {
         // On success, error will be null.
         // On error, word will be null.
         console.log('randomword fn');
