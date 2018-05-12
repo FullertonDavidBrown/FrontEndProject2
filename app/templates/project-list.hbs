@@ -1,2 +1,17 @@
 <h1>Project-List</h1>
+<section>
+    <ul class="list-group">
+    {{#each model as |project|}}
+        <li class="list-group-item">
+           <div class="project-description">
+               Share {{project.share}} of {{project.of}} with {{project.with}} by {{project.by}}
+               <div class="project-reason">
+                    <b>Reason: {{project.reason}}</b> 
+               </div>
+           </div> 
+        </li>
+    {{/each}}
+    </ul>
+
+</section>
 {{outlet}}
