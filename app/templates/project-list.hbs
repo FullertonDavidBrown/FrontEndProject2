@@ -1,45 +1,28 @@
-<h1>Project-List</h1> {{outlet}}
+<h1>Project-List</h1>
+<section>
+    <ul class="list-group">
+    {{#each model as |project|}}
+        <li class="list-group-item list-group-item-action">
+           <div class="project-description">
+               Share {{project.share}} of {{project.of}} with {{project.with}} by {{project.by}}
+               <div class="project-reason">
+                    <b>Reason: {{project.reason}}</b> 
+               </div>
+               <div class="voteButtons">
+                  <button type="button" class="btn btn-default btn-sml">
+                    <span class="glyphicon glyphicon-arrow-up" name="upVote" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="btn btn-default btn-sml">
+                    <span class="glyphicon glyphicon-arrow-down" name="downVote" aria-hidden="true"></span>
+                  </button>
+               </div>
+           </div> 
+        </li>
+    {{/each}}
+    </ul>
 
-<div class="list-group">
-  <a href="#" class="list-group-item list-group-item-action active">
-    Sample List
-  </a>
-  <a href="#" class="list-group-item list-group-item-action">Random Idea Generator
-    <button type="button" class="btn btn-default btn-lg" {{action 'upPress'}}>
-      <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
-    </button>
-    <button type="button" class="btn btn-default btn-lg">
-      <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
-    </button>
-  </a>
-  <a href="#" class="list-group-item list-group-item-action">Cubic Schemes
-    <button type="button" class="btn btn-default btn-lg">
-      <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
-    </button>
-    <button type="button" class="btn btn-default btn-lg">
-      <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
-    </button>
-  </a>
-  <a href="#" class="list-group-item list-group-item-action">Backwards compatible everything
-    <button type="button" class="btn btn-default btn-lg">
-      <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
-    </button>
-    <button type="button" class="btn btn-default btn-lg">
-      <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
-    </button>
-  </a>
-  <a href="#" class="list-group-item list-group-item-action">Number 4
-    <button type="button" class="btn btn-default btn-lg">
-      <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
-    </button>
-    <button type="button" class="btn btn-default btn-lg">
-      <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
-    </button>
-  </a>
-</div>
-
-<!-- Generate a list -->
-<!-- https://getbootstrap.com/docs/4.0/components/list-group/ -->
+</section>
+{{outlet}}
 
 
 <!-- Get arrow buttons using glyphicons-->
