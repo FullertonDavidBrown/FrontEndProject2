@@ -1,4 +1,5 @@
 import Controller from '@ember/controller';
+import Wordnik from 'npm:wordnik';
 
 var projects = {
   share: [
@@ -31,6 +32,24 @@ export default Controller.extend({
 
   actions: {
     generateProject() {
+      var wn = new Wordnik({
+          api_key: 'a659446027b16f24960073f46c1c4e9c4333f7c699a757cb3'
+      });
+
+      // Random word example. Change include part of speech to change what type of words are returned.
+      wn.randomWord({
+          useCanonical: true,
+          includeSuggestions: true,
+          hasDictionaryDef: true,
+          includePartOfSpeech: 'verb'
+      }, function(error, word, headers, statusCode) {
+        // On success, error will be null.
+        // On error, word will be null.
+        console.log('randomword fn');
+        console.log(error, word, headers, statusCode);
+        console.log(word);
+      });
+
       var rShare = projects.share[Math.floor(Math.random() * projects.share.length)];
       console.log('Share:');
       console.log(rShare);
