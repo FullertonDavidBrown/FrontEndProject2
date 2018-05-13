@@ -8,8 +8,11 @@ var projects = {
   of: ['food', 'family', 'pets', 'celebrities', 'books', 'music', 'movies',
     'other people', 'yourself', 'travel', 'jokes', 'businesses', 'aliens'
   ],
-  with: ['food', 'family', 'pets', 'celebrities', 'books', 'music', 'movies',
-    'other people', 'yourself', 'travel', 'jokes', 'businesses', 'aliens'
+  with: ['classmates', 'professors', 'friends', 'strangers', 'potential mates',
+    'communities of interest', 'editors', 'the public', 'pet owners',
+    'myself', 'your significant other', 'parents', 'family', 'politicians',
+    'government', 'co-workers', 'frenemies', 'stores', 'your mechanic',
+    'your doctor', 'your lawyer', 'your banker',
   ],
   by: ['commenting', 'voting', 'upvoting or downvoting', 'liking', 'buying',
     'editing', 'bargaining', 'contacting', 'viewing', 'rating',
@@ -28,25 +31,36 @@ export default Controller.extend({
 
   actions: {
     generateProject() {
-      var share = projects.share[Math.floor(Math.random() * projects.share.length)];
+      var rShare = projects.share[Math.floor(Math.random() * projects.share.length)];
       console.log('Share:');
-      console.log(share);
+      console.log(rShare);
 
-      var of = projects.of[Math.floor(Math.random() * projects.of.length)];
+      var rOf = projects.of[Math.floor(Math.random() * projects.of.length)];
       console.log('Of:');
-      console.log(of);
+      console.log( rOf );
 
-      var With = projects.with[Math.floor(Math.random() * projects.with.length)];
+      var rWith = projects.with[Math.floor(Math.random() * projects.with.length)];
       console.log('With:');
-      console.log(With);
+      console.log(rWith);
 
-      var by = projects.by[Math.floor(Math.random() * projects.by.length)];
+      var rBy = projects.by[Math.floor(Math.random() * projects.by.length)];
       console.log('By:');
-      console.log(by);
+      console.log(rBy);
 
-      var reason = projects.reason[Math.floor(Math.random() * projects.reason.length)];
+      var rReason = projects.reason[Math.floor(Math.random() * projects.reason.length)];
       console.log('Reason:');
-      console.log(reason);
+      console.log(rReason);
+
+      var newProject = this.store.createRecord('project', {
+        share: rShare,
+        of: rOf,
+        with: rWith,
+        by: rBy,
+        reason: rReason,
+        popularity: 1
+      });
+      newProject.save();
+
     }
   }
 });
