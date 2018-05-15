@@ -1,13 +1,29 @@
+<h1>Project-List</h1>
+<section>
+    <ul class="list-group">
+    {{#each model as |project|}}
+        <li class="list-group-item list-group-item-action">
+           <div class="project-description">
+               Share {{project.share}} of {{project.of}} with {{project.with}} by {{project.by}}
+               <div class="project-reason">
+                    <b>Reason: {{project.reason}}</b> 
+               </div>
+               <div class="voteButtons">
+                  <button type="button" class="btn btn-default btn-sml">
+                    <span class="glyphicon glyphicon-arrow-up" name="upVote" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="btn btn-default btn-sml">
+                    <span class="glyphicon glyphicon-arrow-down" name="downVote" aria-hidden="true"></span>
+                  </button>
+               </div>
+           </div> 
+        </li>
+    {{/each}}
+    </ul>
 
-{{Project-List idea = model}}
-
-
-<!-- Generate a list -->
-<!-- https://getbootstrap.com/docs/4.0/components/list-group/ -->
+</section>
+{{outlet}}
 
 
 <!-- Get arrow buttons using glyphicons-->
 <!--https://getbootstrap.com/docs/3.3/components/ -->
-
-<!-- get the component working -->
-<!-- https://guides.emberjs.com/v3.0.0/getting-started/quick-start/ -->
