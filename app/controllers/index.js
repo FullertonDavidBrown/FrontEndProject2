@@ -51,24 +51,24 @@ export default Controller.extend({
       });
 
       var rShare = projects.share[Math.floor(Math.random() * projects.share.length)];
-      console.log('Share:');
-      console.log(rShare);
+      // console.log('Share:');
+      // console.log(rShare);
 
       var rOf = projects.of[Math.floor(Math.random() * projects.of.length)];
-      console.log('Of:');
-      console.log( rOf );
+      // console.log('Of:');
+      // console.log( rOf );
 
       var rWith = projects.with[Math.floor(Math.random() * projects.with.length)];
-      console.log('With:');
-      console.log(rWith);
+      // console.log('With:');
+      // console.log(rWith);
 
       var rBy = projects.by[Math.floor(Math.random() * projects.by.length)];
-      console.log('By:');
-      console.log(rBy);
+      // console.log('By:');
+      // console.log(rBy);
 
       var rReason = projects.reason[Math.floor(Math.random() * projects.reason.length)];
-      console.log('Reason:');
-      console.log(rReason);
+      // console.log('Reason:');
+      // console.log(rReason);
 
       var newProject = this.store.createRecord('project', {
         share: rShare,

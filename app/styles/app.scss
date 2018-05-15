@@ -19,8 +19,16 @@
 .project-description{
     font-size: 16px;
     letter-spacing: normal;
+    display: block;
+
 }
 
 .project-reason{
     font-size: 14px;
+
+}
+
+.voteButtons{
+    float: right;
+    display: inline-flex;
 }
