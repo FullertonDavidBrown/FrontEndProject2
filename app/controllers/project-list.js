@@ -7,7 +7,7 @@ export default Controller.extend({
 
 actions: {
   upPress() {
-    alert("this button was pressed");
+    alert("up arrow");
   }
 }
 });
