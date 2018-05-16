@@ -1,2 +1,30 @@
 <h1>Project-List</h1>
+<section>
+    <ul class="list-group">
+    {{#each model as |project|}}
+        <li class="list-group-item list-group-item-action">
+           <div class="project-description">
+               Share {{project.share}} of {{project.of}} with {{project.with}} by {{project.by}}
+               <div class="voteButtons">
+                  <button type="button" class="btn btn-default btn-sml" {{action "upVote"}}>
+                    <span class="glyphicon glyphicon-arrow-up" name="upVote" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="btn btn-default btn-sml">
+                    <span class="glyphicon glyphicon-arrow-down" name="downVote" aria-hidden="true"></span>
+                  </button>
+               </div>
+           </div> 
+            <div class="project-reason">
+                <b> Reason: {{project.reason}}</b>
+                <br> Popularity: {{project.popularity}}
+            </div>
+        </li>
+    {{/each}}
+    </ul>
+
+</section>
 {{outlet}}
+
+
+<!-- Get arrow buttons using glyphicons-->
+<!--https://getbootstrap.com/docs/3.3/components/ -->

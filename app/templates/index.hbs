@@ -1,3 +1,13 @@
-<h1>Home Page</h1>
-<button class="btn btn-primary btn-lg btn-block"  disabled={{isDisabled}} {{action 'buttonAction'}}>Generate Project</button>
+<div class="main-box-container">
+    <div class="main-button-container">
+        {{#stylish-button type="wayra" border="thick" shape="round-l" action=(action 'generateProject')}}
+            <div class="btn generate-button">
+                Generate Project
+            </div>
+        {{/stylish-button}}
+    </div>
+</div>
+
+
+
 {{outlet}}
