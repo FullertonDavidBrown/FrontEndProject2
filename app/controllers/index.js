@@ -29,9 +29,11 @@ import Wordnik from 'npm:wordnik';
 //
 export default Controller.extend({
   isShowingModal: false,
+  isDisabled: false,
   result_id: "",
   actions: {
     closeModal: function(){this.toggleProperty('isShowingModal');},
+    toggleDisable: function() { this.toggleProperty('isDisabled'); console.log("disable")},
     generateProject() {
       var wn = new Wordnik({
           api_key: 'a659446027b16f24960073f46c1c4e9c4333f7c699a757cb3'
@@ -42,7 +44,7 @@ export default Controller.extend({
 
       // Create new result object.
       var newResult = this.store.createRecord('result');
-      newResult.set('timestamp', new Date()); 
+      newResult.set('timestamp', new Date());
       newResult.save();
 
       // Update word list to change what words are generated. word 1 is noun, word 2 is noun, etc.
@@ -139,14 +141,13 @@ export default Controller.extend({
         this.set('result_id', newResult.get('id'));
         console.log(this.get('result_id'));
         this.transitionToRoute('result', newResult);
+        this.toggleProperty('isDisabled');
       }.bind(this), function(err) {
         // error occurred, at least one project creation failed.
         // we can chose to either keep the result with missing projects or throw it out all together.
         console.log('eerrrrrors!\n\n\n');
         console.log(err);
       });
-
-    }
+    }//END-OF:: generateProject
   }
 });
-
