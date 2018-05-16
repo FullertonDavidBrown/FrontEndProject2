@@ -1,56 +1,69 @@
-<div class="main-box-container">
-    <div class="main-button-container">
-      {{#if error_message}}
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+
+<body>
+  <div class="main">
+    <section class="generate-area">
+      <div class="options-area">
+        {{#if error_message}}
         <p class="bg-danger">{{error_message}}</p>
-      {{/if}}
-      <h2><button disabled={{isDisabled}} class="btn generate-button" {{action "toggleDisable"}}{{action "generateProject"}}>Generate Random Projects</button></h2>
-      <h2><button disabled={{isDisabled}} class="btn generate-button" {{action "toggleDisable"}}{{action "generateLegacyProject"}}>Generate Legacy Projects</button></h2>
+        {{/if}}
+        <div class="num-gen">Number of Projects to generate: </div>
+        <input class="input-form" type="number" name="nprojects" value="10" onchange={{action (mut nprojects) value="target.value"
+          }} />
 
-                  <input type="number" name="nprojects" value="10" onchange={{action (mut nprojects) value="target.value"}} />
-    </div>
-      <div class="row">
-          <div class="col-md-6  col-md-offset-3">
-            <h4>&lt; {{speechType1}} &gt; of &lt; {{speechType2}} &gt; with &lt; {{speechType3}} &gt; by  &lt; {{speechType4}} &gt; reason &lt; {{speechType5}} &gt;</h4>
-                  <label for="speechTypeSelect1">Speech Type 1</label>
-                  <select name="speechTypeSelect1" class="form-control" onchange={{action (mut speechType1) value="target.value"}}>
-                      <option value='noun' selected>-- default (noun) --</option>
-                    {{#each speechTypes as |speechTypeChoice|}}
-                      <option value={{speechTypeChoice}} >{{speechTypeChoice}}</option>
-                    {{/each}}
-                  </select>
-                  <label for="speechTypeSelect2">Speech Type 2</label>
-                  <select name="speechTypeSelect2" class="form-control" onchange={{action (mut speechType2) value="target.value"}}>
-                      <option value='noun' selected>-- default (noun) --</option>
-                    {{#each speechTypes as |speechTypeChoice|}}
-                      <option value={{speechTypeChoice}} >{{speechTypeChoice}}</option>
-                    {{/each}}
-                  </select>
-                  <label for="speechTypeSelect3">Speech Type 3</label>
-                  <select name="speechTypeSelect3" class="form-control" onchange={{action (mut speechType3) value="target.value"}}>
-                      <option value='noun' selected>-- default (noun) --</option>
-                    {{#each speechTypes as |speechTypeChoice|}}
-                      <option value={{speechTypeChoice}} >{{speechTypeChoice}}</option>
-                    {{/each}}
-                  </select>
-                  <label for="speechTypeSelect4">Speech Type 4</label>
-                  <select name="speechTypeSelect2" class="form-control" onchange={{action (mut speechType4) value="target.value"}}>
-                      <option value='verb' selected>-- default (verb) --</option>
-                    {{#each speechTypes as |speechTypeChoice|}}
-                      <option value={{speechTypeChoice}} >{{speechTypeChoice}}</option>
-                    {{/each}}
-                  </select>
-                  <label for="speechTypeSelect5">Speech Type 5</label>
-                  <select name="speechTypeSelect5" class="form-control" onchange={{action (mut speechType5) value="target.value"}}>
-                      <option value='noun' selected>-- default (noun) --</option>
-                    {{#each speechTypes as |speechTypeChoice|}}
-                      <option value={{speechTypeChoice}} >{{speechTypeChoice}}</option>
-                    {{/each}}
-                  </select>
-          </div>
+        <div class="generate-text-box">
+          <h3>&lt; {{speechType1}} &gt; of &lt; {{speechType2}} &gt; with &lt; {{speechType3}} &gt; by &lt; {{speechType4}} &gt;
+            reason &lt; {{speechType5}} &gt;</h3>
+        </div>
+
+        <div class="col-md-6  col-md-offset-3">
+          <label for="speechTypeSelect1">Speech Type 1</label>
+          <select name="speechTypeSelect1" class="form-control" onchange={{action (mut speechType1) value="target.value" }}>
+            <option value='noun' selected>-- default (noun) --</option>
+            {{#each speechTypes as |speechTypeChoice|}}
+            <option value={{speechTypeChoice}}>{{speechTypeChoice}}</option>
+            {{/each}}
+          </select>
+          <label for="speechTypeSelect2">Speech Type 2</label>
+          <select name="speechTypeSelect2" class="form-control" onchange={{action (mut speechType2) value="target.value" }}>
+            <option value='noun' selected>-- default (noun) --</option>
+            {{#each speechTypes as |speechTypeChoice|}}
+            <option value={{speechTypeChoice}}>{{speechTypeChoice}}</option>
+            {{/each}}
+          </select>
+          <label for="speechTypeSelect3">Speech Type 3</label>
+          <select name="speechTypeSelect3" class="form-control" onchange={{action (mut speechType3) value="target.value" }}>
+            <option value='noun' selected>-- default (noun) --</option>
+            {{#each speechTypes as |speechTypeChoice|}}
+            <option value={{speechTypeChoice}}>{{speechTypeChoice}}</option>
+            {{/each}}
+          </select>
+          <label for="speechTypeSelect4">Speech Type 4</label>
+          <select name="speechTypeSelect2" class="form-control" onchange={{action (mut speechType4) value="target.value" }}>
+            <option value='verb' selected>-- default (verb) --</option>
+            {{#each speechTypes as |speechTypeChoice|}}
+            <option value={{speechTypeChoice}}>{{speechTypeChoice}}</option>
+            {{/each}}
+          </select>
+          <label for="speechTypeSelect5">Speech Type 5</label>
+          <select name="speechTypeSelect5" class="form-control" onchange={{action (mut speechType5) value="target.value" }}>
+            <option value='noun' selected>-- default (noun) --</option>
+            {{#each speechTypes as |speechTypeChoice|}}
+            <option value={{speechTypeChoice}}>{{speechTypeChoice}}</option>
+            {{/each}}
+          </select>
+        </div>
       </div>
-
-
-</div>
-    <div class="container">
-    </div>
-{{outlet}}
+      <div class="button-area">
+        <button disabled={{isDisabled}} class="btn btn-primary btn-l generate-button" {{action "toggleDisable"}}{{action
+          "generateProject"}}>Generate Random Projects</button>
+          &nbsp;
+        <button disabled={{isDisabled}} class="btn btn-info btn-l" {{action "toggleDisable"}}{{action 
+          "generateLegacyProject"}}>Generate Legacy Projects</button>
+      </div>
+    </section>
+  </div>
+</body>
