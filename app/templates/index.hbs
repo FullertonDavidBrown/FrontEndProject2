@@ -1,10 +1,13 @@
 <div class="main-box-container">
     <div class="main-button-container">
-        {{#stylish-button type="wayra" border="thick" shape="round-l" action=(action 'generateProject')}}
+        <!--
+        {{#stylish-button type="wayra" border="thick" shape="round-l" action=(action 'generateProject' 'toggleDisable')}}
             <div class="btn generate-button">
                 Generate Project
             </div>
         {{/stylish-button}}
+      -->
+      <h2><button disabled={{isDisabled}} class="btn generate-button" {{action "toggleDisable"}}{{action "generateProject"}}>Generate Project</button></h2>
     </div>
 </div>
 {{outlet}}

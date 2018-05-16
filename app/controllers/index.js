@@ -29,9 +29,11 @@ import Wordnik from 'npm:wordnik';
 //
 export default Controller.extend({
   isShowingModal: false,
+  isDisabled: false,
   result_id: "",
   actions: {
     closeModal: function(){this.toggleProperty('isShowingModal');},
+    toggleDisable: function() { this.toggleProperty('isDisabled'); console.log("disable")},
     generateProject() {
       var wn = new Wordnik({
           api_key: 'a659446027b16f24960073f46c1c4e9c4333f7c699a757cb3'
@@ -42,7 +44,7 @@ export default Controller.extend({
 
       // Create new result object.
       var newResult = this.store.createRecord('result');
-      newResult.set('timestamp', new Date()); 
+      newResult.set('timestamp', new Date());
       newResult.save();
 
       // Update word list to change what words are generated. word 1 is noun, word 2 is noun, etc.
@@ -65,9 +67,11 @@ export default Controller.extend({
                 wn.randomWord(
                   {
                     // We can probably enhance these query parameters to get better results
-                    useCanonical: true, 
-                    includeSuggestions: true, 
-                    hasDictionaryDef: true, 
+                    useCanonical: true,
+                    includeSuggestions: true,
+                    hasDictionaryDef: true,
+                    maxDictionaryCount: 1,
+                    excludePartOfSpeech: 'adjective',
                     includePartOfSpeech: word_type_list[j]
                   },
                   function(error, word, headers, statusCode) {
@@ -107,7 +111,7 @@ export default Controller.extend({
             newResult.save();
             console.log("SAVED A PROJECT!!!!\n\n");
                   // alert with generated project
-            
+
             // Resolve this project promise.
             resolve(newProject);
 
@@ -129,7 +133,7 @@ export default Controller.extend({
         // ----Alternatively:
         //  We can generate all the projects, return them here (we already do this, they're in values),
         //  and then create the result object to attach them to. Then save the projects and the result all at once.
- 
+
         console.log('All promises done');
         console.log('the value printed below should be a list of project objects. They all have been saved.');
         console.log(values);
@@ -137,14 +141,13 @@ export default Controller.extend({
         this.set('result_id', newResult.get('id'));
         console.log(this.get('result_id'));
         this.transitionToRoute('result', newResult);
+        this.toggleProperty('isDisabled');
       }.bind(this), function(err) {
         // error occurred, at least one project creation failed.
         // we can chose to either keep the result with missing projects or throw it out all together.
         console.log('eerrrrrors!\n\n\n');
         console.log(err);
       });
-
-    }
+    }//END-OF:: generateProject
   }
 });
-
