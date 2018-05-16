@@ -66,6 +66,8 @@ export default Controller.extend({
                     useCanonical: true,
                     includeSuggestions: true,
                     hasDictionaryDef: true,
+                    maxDictionaryCount: 1,
+                    excludePartOfSpeech: 'adjective',
                     includePartOfSpeech: word_type_list[j]
                   },
                   function(error, word, headers, statusCode) {

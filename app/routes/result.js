@@ -2,6 +2,6 @@ import Route from '@ember/routing/route';
 
 export default Route.extend({
   model: function() {
-    //var project
+    return this.store.findAll('result');
   }
 });
