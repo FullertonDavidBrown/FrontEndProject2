@@ -1,2 +1,18 @@
-<h1>Results Page</h1>
+<h1>Your Generated Projects</h1>
+<section>
+    <ul class="list-group">
+    {{#each model as |results|}}
+        <li class="list-group-item list-group-item-action">
+           <div class="project-description">
+               Share {{project.share}} of {{project.of}} with {{project.with}} by {{project.by}}
+           </div>
+            <div class="project-reason">
+                <b> Reason: {{project.reason}}</b>
+                <br> Popularity: {{project.popularity}}
+            </div>
+          </li>
+      {{/each}}
+    </ul>
+</section>
+
 {{outlet}}

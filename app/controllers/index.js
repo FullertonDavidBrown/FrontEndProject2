@@ -36,49 +36,68 @@ export default Controller.extend({
           api_key: 'a659446027b16f24960073f46c1c4e9c4333f7c699a757cb3'
       });
 
-      // Random word example. Change include part of speech to change what type of words are returned.
+      var rShare; var rOf; var rWith; var rBy; var rReason;
+
       wn.randomWord({
+        useCanonical: true,
+        includeSuggestions: true,
+        hasDictionaryDef: true,
+        includePartOfSpeech: 'noun'
+      }, function(error, word, headers, statusCode) {
+        rShare = word.word;
+        console.log(rShare);
+
+        wn.randomWord({
           useCanonical: true,
           includeSuggestions: true,
           hasDictionaryDef: true,
-          includePartOfSpeech: 'verb'
-      }, function(error, word, headers, statusCode) {
-        // On success, error will be null.
-        // On error, word will be null.
-        console.log('randomword fn');
-        console.log(error, word, headers, statusCode);
-        console.log(word);
-      });
+          includePartOfSpeech: 'noun'
+        }, function(error, word, headers, statusCode) {
+          rOf = word.word;
+          console.log(rOf);
 
-      var rShare = projects.share[Math.floor(Math.random() * projects.share.length)];
-      // console.log('Share:');
-      // console.log(rShare);
+          wn.randomWord({
+            useCanonical: true,
+            includeSuggestions: true,
+            hasDictionaryDef: true,
+            includePartOfSpeech: 'noun'
+          }, function(error, word, headers, statusCode) {
+            rWith = word.word;
+            console.log(rWith);
 
-      var rOf = projects.of[Math.floor(Math.random() * projects.of.length)];
-      // console.log('Of:');
-      // console.log( rOf );
+            wn.randomWord({useCanonical: true,
+              includeSuggestions: true,
+              hasDictionaryDef: true,
+              includePartOfSpeech: 'verb'
+            }, function(error, word, headers, statusCode) {
+              rBy = word.word;
+              console.log(rBy);
 
-      var rWith = projects.with[Math.floor(Math.random() * projects.with.length)];
-      // console.log('With:');
-      // console.log(rWith);
+              wn.randomWord({
+                useCanonical: true,
+                includeSuggestions: true,
+                hasDictionaryDef: true,
+                includePartOfSpeech: 'noun'
+              }, function(error, word, headers, statusCode) {
+                rReason = word.word;
+                console.log(rReason);
+                console.log(''+rShare+' '+rOf+' '+rWith+' '+rBy+' '+rReason+'');
 
-      var rBy = projects.by[Math.floor(Math.random() * projects.by.length)];
-      // console.log('By:');
-      // console.log(rBy);
+                var newProject = this.store.createRecord('project', {
+                  share: rShare,
+                  of: rOf,
+                  with: rWith,
+                  by: rBy,
+                  reason: rReason,
+                  popularity: 1
+                });
 
-      var rReason = projects.reason[Math.floor(Math.random() * projects.reason.length)];
-      // console.log('Reason:');
-      // console.log(rReason);
-
-      var newProject = this.store.createRecord('project', {
-        share: rShare,
-        of: rOf,
-        with: rWith,
-        by: rBy,
-        reason: rReason,
-        popularity: 1
-      });
-      newProject.save();
+                newProject.save();
+              }.bind(this));
+            }.bind(this));
+          }.bind(this));
+        }.bind(this));
+      }.bind(this));
 
     }
   }
