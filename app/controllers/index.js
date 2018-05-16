@@ -31,10 +31,19 @@ export default Controller.extend({
   isShowingModal: false,
   isDisabled: false,
   result_id: "",
+  speechType1: 'noun',
+  speechType2: 'noun',
+  speechType3: 'noun',
+  speechType4: 'verb',
+  speechType5: 'noun',
+  speechTypes: ['verb', 'noun', 'adjective', 'adverb'],
   actions: {
+    selectSpeechType1(speechType){this.set('speechType', speechType1);},
     closeModal: function(){this.toggleProperty('isShowingModal');},
     toggleDisable: function() { this.toggleProperty('isDisabled'); console.log("disable")},
     generateProject() {
+      // Update word list to change what words are generated. word 1 is noun, word 2 is noun, etc.
+      var word_type_list = [this.speechType1, this.speechType2, this.speechType3, this.speechType4,this.speechType5];
       var wn = new Wordnik({
           api_key: 'a659446027b16f24960073f46c1c4e9c4333f7c699a757cb3'
       });
@@ -47,8 +56,6 @@ export default Controller.extend({
       newResult.set('timestamp', new Date());
       newResult.save();
 
-      // Update word list to change what words are generated. word 1 is noun, word 2 is noun, etc.
-      var word_type_list = ['noun', 'noun', 'noun', 'verb', 'noun'];
 
       // Keep a list of promises. Each promise will be generating a project
       var promises = [];
