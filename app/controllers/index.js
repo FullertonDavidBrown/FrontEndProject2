@@ -26,10 +26,10 @@ import Wordnik from 'npm:wordnik';
 //    'alleviate boredom', 'create knowledge', 'share expertise',
 //  ]
 //};
-//
+
 export default Controller.extend({
-  isShowingModal: false,
   isDisabled: false,
+  error_message: null,
   result_id: "",
   speechType1: 'noun',
   speechType2: 'noun',
@@ -37,19 +37,26 @@ export default Controller.extend({
   speechType4: 'verb',
   speechType5: 'noun',
   speechTypes: ['verb', 'noun', 'adjective', 'adverb'],
+  nprojects: 10,
   actions: {
     selectSpeechType1(speechType){this.set('speechType', speechType1);},
-    closeModal: function(){this.toggleProperty('isShowingModal');},
     toggleDisable: function() { this.toggleProperty('isDisabled'); console.log("disable")},
     generateProject() {
+      // how many projects to generated. Can change this to a form input value or something.
+      console.log(this.nprojects);
+      var nprojects = this.nprojects;
+
+      if(!(0 < nprojects && nprojects <= 20)) {
+        this.set('error_message','Invalid quantity - Select 1-20 project generations');
+        this.toggleProperty('isDisabled');
+        return;
+      }
+
       // Update word list to change what words are generated. word 1 is noun, word 2 is noun, etc.
       var word_type_list = [this.speechType1, this.speechType2, this.speechType3, this.speechType4,this.speechType5];
       var wn = new Wordnik({
           api_key: 'a659446027b16f24960073f46c1c4e9c4333f7c699a757cb3'
       });
-
-      // how many projects to generated. Can change this to a form input value or something.
-      var n_projects = 10
 
       // Create new result object.
       var newResult = this.store.createRecord('result');
@@ -61,7 +68,7 @@ export default Controller.extend({
       var promises = [];
 
       // Generate n number of projects
-      for (var i = 0; i < n_projects; i++) {
+      for (var i = 0; i < nprojects; i++) {
         promises.push(new Promise(function(resolve, reject){
 
           // Time to get edgey, keep a list of our inner promises - Each promise generates a single word.
@@ -154,7 +161,9 @@ export default Controller.extend({
         // we can chose to either keep the result with missing projects or throw it out all together.
         console.log('eerrrrrors!\n\n\n');
         console.log(err);
-      });
+        this.set('error_message','Failed to generate the projets');
+        this.toggleProperty('isDisabled');
+      }.bind(this));
     }//END-OF:: generateProject
   }
 });
