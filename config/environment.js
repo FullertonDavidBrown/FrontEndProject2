@@ -1,6 +1,8 @@
 'use strict';
 
 module.exports = function(environment) {
+
+
   let ENV = {
     modulePrefix: 'front-end-project2',
     environment,
