@@ -6,10 +6,10 @@
            <div class="project-description">
                Share {{project.share}} of {{project.of}} with {{project.with}} by {{project.by}}
                <div class="voteButtons">
-                  <button type="button" class="btn btn-default btn-sml" {{action "upVote"}}>
+                  <button type="button" class="btn btn-default btn-sml" {{action 'upVote' project.id project.popularity}}>
                     <span class="glyphicon glyphicon-arrow-up" name="upVote" aria-hidden="true"></span>
                   </button>
-                  <button type="button" class="btn btn-default btn-sml">
+                  <button type="button" class="btn btn-default btn-sml" {{action 'downVote' project.id project.popularity}}>
                     <span class="glyphicon glyphicon-arrow-down" name="downVote" aria-hidden="true"></span>
                   </button>
                </div>
@@ -17,6 +17,7 @@
             <div class="project-reason">
                 <b> Reason: {{project.reason}}</b>
                 <br> Popularity: {{project.popularity}}
+                <br><i>key: {{project.id}}</i>
             </div>
         </li>
     {{/each}}
