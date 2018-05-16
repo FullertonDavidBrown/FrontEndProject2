@@ -104,7 +104,8 @@ export default Controller.extend({
             newResult.get('projects').addObject(newProject);
             newResult.save();
             console.log("SAVED A PROJECT!!!!\n\n");
-
+                  // alert with generated project
+            
             // Resolve this project promise.
             resolve(newProject);
 
@@ -136,6 +137,9 @@ export default Controller.extend({
         console.log('eerrrrrors!\n\n\n');
         console.log(err);
       });
+
+
+
     }
   }
 });
