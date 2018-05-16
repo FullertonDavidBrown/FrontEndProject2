@@ -2,6 +2,7 @@ import DS from 'ember-data';
 import { computed } from '@ember/object';
 
 export default DS.Model.extend({
+  results: DS.belongsTo('result', { async: true, inverse: null }),
   share: DS.attr('string'),
   of: DS.attr('string'),
   with: DS.attr('string'),
