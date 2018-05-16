@@ -3,7 +3,8 @@
       {{#if error_message}}
         <p class="bg-danger">{{error_message}}</p>
       {{/if}}
-      <h2><button disabled={{isDisabled}} class="btn generate-button" {{action "toggleDisable"}}{{action "generateProject"}}>Generate Projects</button></h2>
+      <h2><button disabled={{isDisabled}} class="btn generate-button" {{action "toggleDisable"}}{{action "generateProject"}}>Generate Random Projects</button></h2>
+      <h2><button disabled={{isDisabled}} class="btn generate-button" {{action "toggleDisable"}}{{action "generateLegacyProject"}}>Generate Legacy Projects</button></h2>
 
                   <input type="number" name="nprojects" value="10" onchange={{action (mut nprojects) value="target.value"}} />
     </div>
