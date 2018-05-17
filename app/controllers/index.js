@@ -1,4 +1,5 @@
 import Controller from '@ember/controller';
+import { w } from '@ember/string';
 import Wordnik from 'npm:wordnik';
 
 // Keepign these here for now. We may utilzie them later.
@@ -36,14 +37,12 @@ export default Controller.extend({
   speechType3: 'noun',
   speechType4: 'verb',
   speechType5: 'noun',
-  speechTypes: ['verb', 'noun', 'adjective', 'adverb'],
+  speechTypes: w('verb noun adjective adverb'),
   nprojects: 10,
   actions: {
-    selectSpeechType1(speechType){this.set('speechType', speechType1);},
-    toggleDisable: function() { this.toggleProperty('isDisabled'); console.log("disable")},
+    toggleDisable: function() { this.toggleProperty('isDisabled');},
     generateProject() {
       // how many projects to generated. Can change this to a form input value or something.
-      console.log(this.nprojects);
       var nprojects = this.nprojects;
 
       if(!(0 < nprojects && nprojects <= 20)) {
@@ -54,7 +53,6 @@ export default Controller.extend({
 
       // Update word list to change what words are generated. word 1 is noun, word 2 is noun, etc.
       var word_type_list = [this.speechType1, this.speechType2, this.speechType3, this.speechType4,this.speechType5];
-      console.log(word_type_list);
       var wn = new Wordnik({
           api_key: 'a659446027b16f24960073f46c1c4e9c4333f7c699a757cb3'
       });
@@ -88,7 +86,7 @@ export default Controller.extend({
                     maxDictionaryCount: 1,
                     includePartOfSpeech: word_type_list[j]
                   },
-                  function(error, word, headers, statusCode) {
+                  function(error, word,) {
                     // Fullfil our promise. Reject if error, or resolve promise.
                     if(error) {
                       reject(error)
@@ -103,8 +101,6 @@ export default Controller.extend({
           // Wait for all our inner promises to complete.
           Promise.all(inner_promises).then(function(values) {
             // all success - values is a list of resolved promise return values from inner promises
-            console.log("in all promise: No errors!");
-            console.log(values);
 
             // Create new project
             var newProject = this.store.createRecord('project', {
@@ -123,7 +119,6 @@ export default Controller.extend({
             // Result object  has a list of projects. Add this project to it
             newResult.get('projects').addObject(newProject);
             newResult.save();
-            console.log("SAVED A PROJECT!!!!\n\n");
                   // alert with generated project
 
             // Resolve this project promise.
@@ -139,7 +134,7 @@ export default Controller.extend({
       }
 
       // Promise all for all 10 project promises
-      Promise.all(promises).then(function(values) {
+      Promise.all(promises).then(function() {
         // All promises have completed.
         // The projects have been saved
         // the result has been saved
@@ -148,26 +143,18 @@ export default Controller.extend({
         //  We can generate all the projects, return them here (we already do this, they're in values),
         //  and then create the result object to attach them to. Then save the projects and the result all at once.
 
-        console.log('All promises done');
-        console.log('the value printed below should be a list of project objects. They all have been saved.');
-        console.log(values);
-        console.log(newResult.get('id'));
         this.set('result_id', newResult.get('id'));
-        console.log(this.get('result_id'));
         this.transitionToRoute('result', newResult);
         this.toggleProperty('isDisabled');
-      }.bind(this), function(err) {
+      }.bind(this), function() {
         // error occurred, at least one project creation failed.
         // we can chose to either keep the result with missing projects or throw it out all together.
-        console.log('eerrrrrors!\n\n\n');
-        console.log(err);
         this.set('error_message','Failed to generate the projets');
         this.toggleProperty('isDisabled');
       }.bind(this));
     },//END-OF:: generateProject
     generateLegacyProject() {
       // how many projects to generated. Can change this to a form input value or something.
-      console.log(this.nprojects);
       var nprojects = this.nprojects;
 
       if(!(0 < nprojects && nprojects <= 20)) {
@@ -187,26 +174,12 @@ export default Controller.extend({
 
       // Generate n number of projects
       for (var i = 0; i < nprojects; i++) {
-        promises.push(new Promise(function(resolve, reject){
+        promises.push(new Promise(function(resolve){
           var rShare = projects.share[Math.floor(Math.random() * projects.share.length)];
-          console.log('Share:');
-          console.log(rShare);
-
           var rOf = projects.of[Math.floor(Math.random() * projects.of.length)];
-          console.log('Of:');
-          console.log( rOf );
-
           var rWith = projects.with[Math.floor(Math.random() * projects.with.length)];
-          console.log('With:');
-          console.log(rWith);
-
           var rBy = projects.by[Math.floor(Math.random() * projects.by.length)];
-          console.log('By:');
-          console.log(rBy);
-
           var rReason = projects.reason[Math.floor(Math.random() * projects.reason.length)];
-          console.log('Reason:');
-          console.log(rReason);
 
           // Create new project
           var newProject = this.store.createRecord('project', {
@@ -225,7 +198,6 @@ export default Controller.extend({
           // Result object  has a list of projects. Add this project to it
           newResult.get('projects').addObject(newProject);
           newResult.save();
-          console.log("SAVED A PROJECT!!!!\n\n");
           // Resolve this project promise.
           resolve(newProject);
 
@@ -233,7 +205,7 @@ export default Controller.extend({
       }
 
       // Promise all for all 10 project promises
-      Promise.all(promises).then(function(values) {
+      Promise.all(promises).then(function() {
         // All promises have completed.
         // The projects have been saved
         // the result has been saved
@@ -242,18 +214,12 @@ export default Controller.extend({
         //  We can generate all the projects, return them here (we already do this, they're in values),
         //  and then create the result object to attach them to. Then save the projects and the result all at once.
 
-        console.log('All promises done');
-        console.log('the value printed below should be a list of project objects. They all have been saved.');
-        console.log(values);
-        console.log(newResult.get('id'));
         this.set('result_id', newResult.get('id'));
-        console.log(this.get('result_id'));
         this.transitionToRoute('result', newResult);
         this.toggleProperty('isDisabled');
-      }.bind(this), function(err) {
+      }.bind(this), function() {
         // error occurred, at least one project creation failed.
         // we can chose to either keep the result with missing projects or throw it out all together.
-        console.log('eerrrrrors!\n\n\n'); console.log(err);
         this.set('error_message','Failed to generate the projets');
         this.toggleProperty('isDisabled');
       }.bind(this));
