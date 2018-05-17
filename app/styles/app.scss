@@ -1,40 +1,68 @@
 @import "bootstrap";
 
-body {
-  padding-top: 30px;
-  background: linear-gradient(0deg, blue, white);
-  max-height: 100%;
-  background-repeat: no-repeat;
-}
-
-.main-box-container {
-    height: 847px;
-    max-height: 100%;
-    //background-color: whitesmoke;
-    background: linear-gradient(180deg, lightblue, white);
-}
-
-.main-button-container {
+.generate-area {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    position: relative;
-    padding: 7.5%;
+    flex-direction: column;
 }
 
-.project-description{
+.options-area {
+    display: flex;
+    flex-direction: column;
+}
+
+.button-area {
+    display: flex;
+    flex-direction: column;
+    padding-top: 1.5rem;
+    width: 50%;
+    align-self: center;
+    margin-top: auto;
+    
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+ 
+}
+  
+  .navbar {
+      background-color: black;
+      width: 100%;
+      left:0%;
+      top:0%;
+  }
+
+  .project-description{
     font-size: 16px;
     letter-spacing: normal;
     display: block;
+    color: black;
 
 }
 
 .project-reason{
     font-size: 14px;
-
 }
 
 .voteButtons{
     float: right;
     display: inline-flex;
+}
+
+.input-form {
+    display: inline-flex;
+    align-self: center;
+    color: black;
+
+}
+
+.num-gen {
+    display: inline-flex;
+    align-self: center;
+    font-size: 20px;
+    padding-bottom: 1.5rem;
 }
