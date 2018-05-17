@@ -54,6 +54,7 @@ export default Controller.extend({
 
       // Update word list to change what words are generated. word 1 is noun, word 2 is noun, etc.
       var word_type_list = [this.speechType1, this.speechType2, this.speechType3, this.speechType4,this.speechType5];
+      console.log(word_type_list);
       var wn = new Wordnik({
           api_key: 'a659446027b16f24960073f46c1c4e9c4333f7c699a757cb3'
       });
@@ -85,7 +86,6 @@ export default Controller.extend({
                     includeSuggestions: true,
                     hasDictionaryDef: true,
                     maxDictionaryCount: 1,
-                    excludePartOfSpeech: 'adjective',
                     includePartOfSpeech: word_type_list[j]
                   },
                   function(error, word, headers, statusCode) {
